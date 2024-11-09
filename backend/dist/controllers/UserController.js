@@ -26,7 +26,7 @@ redisClient.on('connect', () => {
 redisClient.on('error', (err) => {
     console.error('Redis error:', err);
 });
-const JWT_SECRET = 'abc1234';
+const JWT_SECRET = process.env.JWT_SECRET || 'abc1234';
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     const userExists = yield redisClient.exists(`user:${username}`);
